@@ -1,4 +1,6 @@
-💡 **Q1.** Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.
+### 💡 **Q1.)**
+
+Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.
 
 You may assume that each input would have exactly one solution, and you may not use the same element twice.
 
@@ -26,7 +28,9 @@ var twoSum = function (nums, target) {
 };
 ```
 
-💡 **Q2.** Given an integer array nums and an integer val, remove all occurrences of val in nums in-place. The order of the elements may be changed. Then return the number of elements in nums which are not equal to val.
+### 💡 **Q2.)**
+
+Given an integer array nums and an integer val, remove all occurrences of val in nums in-place. The order of the elements may be changed. Then return the number of elements in nums which are not equal to val.
 
 Consider the number of elements in nums which are not equal to val be k, to get accepted, you need to do the following things:
 
@@ -51,5 +55,36 @@ var removeElement = function (nums, val) {
 		}
 	}
 	return k;
+};
+```
+
+### 💡 **Q3.)**
+
+Given a sorted array of distinct integers and a target value, return the index if the target is found. If not, return the index where it would be if it were inserted in order.
+
+You must write an algorithm with O(log n) runtime complexity.
+
+**Example 1:**
+Input: nums = [1,3,5,6], target = 5
+
+Output: 2
+
+### Solution:
+
+```javascript
+var searchInsert = function (nums, target) {
+	let low = 0;
+	let high = nums.length - 1;
+	while (low <= high) {
+		let mid = Math.floor((low + high) / 2);
+		if (nums[mid] == target) {
+			return mid;
+		} else if (nums[mid] > target) {
+			high = mid - 1;
+		} else {
+			low = mid + 1;
+		}
+	}
+	return low;
 };
 ```
