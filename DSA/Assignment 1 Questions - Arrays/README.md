@@ -69,7 +69,7 @@ Input: nums = [1,3,5,6], target = 5
 
 Output: 2
 
-### Solution:
+## **Solution:**
 
 ```javascript
 var searchInsert = function (nums, target) {
@@ -89,7 +89,7 @@ var searchInsert = function (nums, target) {
 };
 ```
 
-### 💡 **Q4.**
+### 💡 **Q4.)**
 
 You are given a large integer represented as an integer array digits, where each digits[i] is the ith digit of the integer. The digits are ordered from most significant to least significant in left-to-right order. The large integer does not contain any leading 0's.
 
@@ -104,7 +104,7 @@ Output: [1,2,4]
 Incrementing by one gives 123 + 1 = 124.
 Thus, the result should be [1,2,4].
 
-### Solution:
+## **Solution:**
 
 ```javascript
 var plusOne = function (digits) {
@@ -121,7 +121,7 @@ var plusOne = function (digits) {
 };
 ```
 
-### 💡 **Q5.**
+### 💡 **Q5.)**
 
 You are given two integer arrays nums1 and nums2, sorted in non-decreasing order, and two integers m and n, representing the number of elements in nums1 and nums2 respectively.
 
@@ -136,7 +136,7 @@ Output: [1,2,2,3,5,6]
 **Explanation:** The arrays we are merging are [1,2,3] and [2,5,6].
 The result of the merge is [1,2,2,3,5,6] with the underlined elements coming from nums1.
 
-### Solution:
+## **Solution:**
 
 ```javascript
 var merge = function (nums1, m, nums2, n) {
@@ -159,5 +159,90 @@ var merge = function (nums1, m, nums2, n) {
 		j--;
 		k--;
 	}
+};
+```
+
+### 💡 **Q6.)**
+
+Given an integer array nums, return true if any value appears at least twice in the array, and return false if every element is distinct.
+
+**Example 1:**
+Input: nums = [1,2,3,1]
+
+Output: true
+
+## **Solution:**
+
+```javascript
+var containsDuplicate = function (nums) {
+	let map = new Map();
+	for (let i = 0; i < nums.length; i++) {
+		if (map.has(nums[i])) {
+			return true;
+		}
+		map.set(nums[i], i);
+	}
+	return false;
+};
+```
+
+### 💡 **Q7.)**
+
+Given an integer array nums, move all 0's to the end of it while maintaining the relative order of the nonzero elements.
+
+Note that you must do this in-place without making a copy of the array.
+
+**Example 1:**
+Input: nums = [0,1,0,3,12]
+Output: [1,3,12,0,0]
+
+## **Solution:**
+
+```javascript
+var moveZeroes = function (nums) {
+	let k = 0;
+	for (let i = 0; i < nums.length; i++) {
+		if (nums[i] != 0) {
+			nums[k] = nums[i];
+			k++;
+		}
+	}
+	for (let i = k; i < nums.length; i++) {
+		nums[i] = 0;
+	}
+};
+```
+
+### 💡 **Q8.)**
+
+You have a set of integers s, which originally contains all the numbers from 1 to n. Unfortunately, due to some error, one of the numbers in s got duplicated to another number in the set, which results in repetition of one number and loss of another number.
+
+You are given an integer array nums representing the data status of this set after the error.
+
+Find the number that occurs twice and the number that is missing and return them in the form of an array.
+
+**Example 1:**
+Input: nums = [1,2,2,4]
+Output: [2,3]
+
+## **Solution:**
+
+```javascript
+var findErrorNums = function (nums) {
+	let map = new Map();
+	let ans = [];
+	for (let i = 0; i < nums.length; i++) {
+		if (map.has(nums[i])) {
+			ans.push(nums[i]);
+		} else {
+			map.set(nums[i], i);
+		}
+	}
+	for (let i = 1; i <= nums.length; i++) {
+		if (!map.has(i)) {
+			ans.push(i);
+		}
+	}
+	return ans;
 };
 ```
