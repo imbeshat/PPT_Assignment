@@ -114,3 +114,118 @@ var canPlaceFlowers = function (flowerbed, n) {
 	return count >= n;
 };
 ```
+
+### 💡 **Question 5**
+
+Given an integer array nums, find three numbers whose product is maximum and return the maximum product.
+
+**Example 1:**
+Input: nums = [1,2,3]
+Output: 6
+
+## **Solution**
+
+```javascript
+var maximumProduct = function (nums) {
+	nums.sort((a, b) => a - b);
+	let n = nums.length;
+	let max1 = nums[n - 1] * nums[n - 2] * nums[n - 3];
+	let max2 = nums[0] * nums[1] * nums[n - 1];
+	return Math.max(max1, max2);
+};
+```
+
+### 💡 **Question 6**
+
+Given an array of integers nums which is sorted in ascending order, and an integer target,
+write a function to search target in nums. If target exists, then return its index. Otherwise,
+return -1.
+
+You must write an algorithm with O(log n) runtime complexity.
+
+Input: nums = [-1,0,3,5,9,12], target = 9
+Output: 4
+
+Explanation: 9 exists in nums and its index is 4
+
+## **Solution**
+
+```javascript
+var search = function (nums, target) {
+	let left = 0;
+	let right = nums.length - 1;
+	while (left <= right) {
+		let mid = Math.floor((left + right) / 2);
+		if (nums[mid] === target) {
+			return mid;
+		} else if (nums[mid] < target) {
+			left = mid + 1;
+		} else {
+			right = mid - 1;
+		}
+	}
+	return -1;
+};
+```
+
+### 💡 **Question 7**
+
+An array is monotonic if it is either monotone increasing or monotone decreasing.
+
+An array nums is monotone increasing if for all i <= j, nums[i] <= nums[j]. An array nums is
+monotone decreasing if for all i <= j, nums[i] >= nums[j].
+
+Given an integer array nums, return true if the given array is monotonic, or false otherwise.
+
+Example 1:
+Input: nums = [1,2,2,3]
+Output: true
+
+## **Solution**
+
+```javascript
+var isMonotonic = function (nums) {
+	let increasing = true;
+	let decreasing = true;
+	for (let i = 0; i < nums.length; i++) {
+		if (nums[i] > nums[i + 1]) {
+			increasing = false;
+		}
+		if (nums[i] < nums[i + 1]) {
+			decreasing = false;
+		}
+	}
+	return increasing || decreasing;
+};
+```
+
+### 💡 **Question 8**
+
+You are given an integer array nums and an integer k.
+
+In one operation, you can choose any index i where 0 <= i < nums.length and change nums[i] to nums[i] + x where x is an integer from the range [-k, k]. You can apply this operation at most once for each index i.
+
+The score of nums is the difference between the maximum and minimum elements in nums.
+
+Return the minimum score of nums after applying the mentioned operation at most once for each index in it.
+
+Example 1:
+Input: nums = [1], k = 0
+Output: 0
+
+Explanation: The score is max(nums) - min(nums) = 1 - 1 = 0.
+
+## **Solution**
+
+```javascript
+var smallestRangeI = function (nums, k) {
+	let min = Math.min(...nums);
+	let max = Math.max(...nums);
+	let diff = max - min;
+	if (diff <= 2 * k) {
+		return 0;
+	} else {
+		return diff - 2 * k;
+	}
+};
+```
