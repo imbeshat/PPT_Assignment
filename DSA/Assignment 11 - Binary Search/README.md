@@ -112,6 +112,7 @@ public:
 ```
 
 ### 💡 **Question 4**
+
 Given an array of integers `nums` containing `n + 1` integers where each integer is in the range `[1, n]` inclusive.
 
 There is only **one repeated number** in `nums`, return *this repeated number*.
@@ -127,20 +128,187 @@ Input: nums = [3,1,3,4,2]
 Output: 3
 
 ## **Solution**
+
+```javascript
+var findDuplicate = function (nums) {
+	let slow = nums[0];
+	let fast = nums[0];
+	do {
+		slow = nums[slow];
+		fast = nums[nums[fast]];
+	} while (slow != fast);
+	fast = nums[0];
+	while (slow != fast) {
+		slow = nums[slow];
+		fast = nums[fast];
+	}
+	return slow;
+};
 ```
-javascript
-var findDuplicate = function(nums) {
-		let slow = nums[0];
-		let fast = nums[0];
-		do{
-				slow = nums[slow];
-				fast = nums[nums[fast]];
-		}while(slow != fast);
-		fast = nums[0];
-		while(slow != fast){
-				slow = nums[slow];
-				fast = nums[fast];
+
+### 💡 **Question 5**
+
+Given two integer arrays `nums1` and `nums2`, return *an array of their intersection*. Each element in the result must be **unique** and you may return the result in **any order**.
+
+**Example 1:**
+Input: nums1 = [1,2,2,1], nums2 = [2,2]
+Output: [2]
+
+**Example 2:**
+Input: nums1 = [4,9,5], nums2 = [9,4,9,8,4]
+Output: [9,4]
+Explanation: [4,9] is also accepted.
+
+## **Solution**
+
+```javascript
+var intersection = function (nums1, nums2) {
+	let set1 = new Set(nums1);
+	let set2 = new Set(nums2);
+	let result = [];
+	for (let item of set1) {
+		if (set2.has(item)) {
+			result.push(item);
 		}
-		return slow;
+	}
+	return result;
+};
+```
+
+### 💡 **Question 6**
+
+Suppose an array of length `n` sorted in ascending order is **rotated** between `1` and `n` times. For example, the array `nums = [0,1,2,4,5,6,7]` might become:
+
+- `[4,5,6,7,0,1,2]` if it was rotated `4` times.
+- `[0,1,2,4,5,6,7]` if it was rotated `7` times.
+
+Notice that **rotating** an array `[a[0], a[1], a[2], ..., a[n-1]]` 1 time results in the array `[a[n-1], a[0], a[1], a[2], ..., a[n-2]]`.
+
+Given the sorted rotated array `nums` of **unique** elements, return *the minimum element of this array*.
+
+You must write an algorithm that runs in `O(log n) time.`
+
+**Example 1:**
+Input: nums = [3,4,5,1,2]
+Output: 1
+Explanation: The original array was [1,2,3,4,5] rotated 3 times.
+
+**Example 2:**
+Input: nums = [4,5,6,7,0,1,2]
+Output: 0
+Explanation: The original array was [0,1,2,4,5,6,7] and it was rotated 4 times.
+
+**Example 3:**
+Input: nums = [11,13,15,17]
+Output: 11
+Explanation: The original array was [11,13,15,17] and it was rotated 4 times.
+
+## **Solution**
+
+```javascript
+var findMin = function (nums) {
+	let left = 0;
+	let right = nums.length - 1;
+	while (left < right) {
+		let mid = Math.floor((left + right) / 2);
+		if (nums[mid] > nums[right]) {
+			left = mid + 1;
+		} else {
+			right = mid;
+		}
+	}
+	return nums[left];
+};
+```
+
+### 💡 **Question 7**
+
+Given an array of integers `nums` sorted in non-decreasing order, find the starting and ending position of a given `target` value.
+
+If `target` is not found in the array, return `[-1, -1]`.
+
+You must write an algorithm with `O(log n)` runtime complexity.
+
+**Example 1:**
+Input: nums = [5,7,7,8,8,10], target = 8
+Output: [3,4]
+
+**Example 2:**
+Input: nums = [5,7,7,8,8,10], target = 6
+Output: [-1,-1]
+
+**Example 3:**
+Input: nums = [], target = 0
+Output: [-1,-1]
+
+## **Solution**
+
+```javascript
+var searchRange = function (nums, target) {
+	let left = 0;
+	let right = nums.length - 1;
+	let mid = 0;
+	let result = [-1, -1];
+	while (left <= right) {
+		mid = Math.floor((left + right) / 2);
+		if (nums[mid] === target) {
+			result[0] = mid;
+			right = mid - 1;
+		} else if (nums[mid] < target) {
+			left = mid + 1;
+		} else {
+			right = mid - 1;
+		}
+	}
+	left = 0;
+	right = nums.length - 1;
+	while (left <= right) {
+		mid = Math.floor((left + right) / 2);
+		if (nums[mid] === target) {
+			result[1] = mid;
+			left = mid + 1;
+		} else if (nums[mid] < target) {
+			left = mid + 1;
+		} else {
+			right = mid - 1;
+		}
+	}
+	return result;
+};
+```
+
+### 💡 **Question 8**
+
+Given two integer arrays `nums1` and `nums2`, return *an array of their intersection*. Each element in the result must appear as many times as it shows in both arrays and you may return the result in **any order**.
+
+**Example 1:**
+Input: nums1 = [1,2,2,1], nums2 = [2,2]
+Output: [2,2]
+
+**Example 2:**
+Input: nums1 = [4,9,5], nums2 = [9,4,9,8,4]
+Output: [4,9]
+Explanation: [9,4] is also accepted.
+
+## **Solution**
+
+```javascript
+var intersect = function (nums1, nums2) {
+	let map = new Map();
+	let result = [];
+	for (let i = 0; i < nums1.length; i++) {
+		if (map.has(nums1[i])) {
+			map.set(nums1[i], map.get(nums1[i]) + 1);
+		} else {
+			map.set(nums1[i], 1);
+		}
+	}
+	for (let i = 0; i < nums2.length; i++) {
+		if (map.has(nums2[i]) && map.get(nums2[i]) > 0) {
+			result.push(nums2[i]);
+			map.set(nums2[i], map.get(nums2[i]) - 1);
+		}
+	}
+	return result;
 };
 ```
