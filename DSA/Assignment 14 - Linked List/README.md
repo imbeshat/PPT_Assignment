@@ -303,22 +303,22 @@ Output: [2,3,6,7,1,5,4]
 ```cpp
 class Solution {
 public:
-		ListNode* oddEvenList(ListNode* head) {
-				if(head == NULL || head->next == NULL){
-						return head;
-				}
-				ListNode* odd = head;
-				ListNode* even = head->next;
-				ListNode* evenHead = even;
-				while(even && even->next){
-						odd->next = even->next;
-						odd = odd->next;
-						even->next = odd->next;
-						even = even->next;
-				}
-				odd->next = evenHead;
+	ListNode* oddEvenList(ListNode* head) {
+		if(head == NULL || head->next == NULL){
 				return head;
 		}
+		ListNode* odd = head;
+		ListNode* even = head->next;
+		ListNode* evenHead = even;
+		while(even && even->next){
+				odd->next = even->next;
+				odd = odd->next;
+				even->next = odd->next;
+				even = even->next;
+		}
+		odd->next = evenHead;
+		return head;
+	}
 };
 ```
 
@@ -348,21 +348,21 @@ Output:5 6 7 8 1 2 3 4
 ```cpp
 class Solution {
 public:
-		Node* rotate(Node* head, int k) {
-				// Your code here
-				Node* curr = head;
-				while(curr->next){
-						curr = curr->next;
-				}
-				curr->next = head;
-				curr = head;
-				while(k--){
-						curr = curr->next;
-				}
-				head = curr->next;
-				curr->next = NULL;
-				return head;
+	Node* rotate(Node* head, int k) {
+		// Your code here
+		Node* curr = head;
+		while(curr->next){
+				curr = curr->next;
 		}
+		curr->next = head;
+		curr = head;
+		while(k--){
+				curr = curr->next;
+		}
+		head = curr->next;
+		curr->next = NULL;
+		return head;
+	}
 };
 ```
 
@@ -387,23 +387,23 @@ Output: [7,0,5,5,0]
 ```cpp
 class Solution {
 public:
-		vector<int> nextLargerNodes(ListNode* head) {
-				vector<int> ans;
-				stack<int> s;
-				for(ListNode* curr = head; curr != NULL; curr = curr->next){
-						while(!s.empty() && ans[s.top()] < curr->val){
-								ans[s.top()] = curr->val;
-								s.pop();
-						}
-						s.push(ans.size());
-						ans.push_back(curr->val);
-				}
-				while(!s.empty()){
-						ans[s.top()] = 0;
+	vector<int> nextLargerNodes(ListNode* head) {
+		vector<int> ans;
+		stack<int> s;
+		for(ListNode* curr = head; curr != NULL; curr = curr->next){
+				while(!s.empty() && ans[s.top()] < curr->val){
+						ans[s.top()] = curr->val;
 						s.pop();
 				}
-				return ans;
+				s.push(ans.size());
+				ans.push_back(curr->val);
 		}
+		while(!s.empty()){
+				ans[s.top()] = 0;
+				s.pop();
+		}
+		return ans;
+	}
 };
 ```
 
@@ -433,21 +433,21 @@ Output: [1]
 ```cpp
 class Solution {
 public:
-		ListNode* removeZeroSumSublists(ListNode* head) {
-				ListNode* dummy = new ListNode(0);
-				dummy->next = head;
-				unordered_map<int, ListNode*> m;
-				int prefix = 0;
-				for(ListNode* i = dummy; i != NULL; i = i->next){
-						prefix += i->val;
-						m[prefix] = i;
-				}
-				prefix = 0;
-				for(ListNode* i = dummy; i != NULL; i = i->next){
-						prefix += i->val;
-						i->next = m[prefix]->next;
-				}
-				return dummy->next;
+	ListNode* removeZeroSumSublists(ListNode* head) {
+		ListNode* dummy = new ListNode(0);
+		dummy->next = head;
+		unordered_map<int, ListNode*> m;
+		int prefix = 0;
+		for(ListNode* i = dummy; i != NULL; i = i->next){
+				prefix += i->val;
+				m[prefix] = i;
 		}
+		prefix = 0;
+		for(ListNode* i = dummy; i != NULL; i = i->next){
+				prefix += i->val;
+				i->next = m[prefix]->next;
+		}
+		return dummy->next;
+	}
 };
 ```
