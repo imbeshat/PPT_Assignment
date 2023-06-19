@@ -279,3 +279,175 @@ class Solution {
 	}
 }
 ```
+
+### 💡 **Question 5**
+
+Given the `head` of a singly linked list, group all the nodes with odd indices together followed by the nodes with even indices, and return *the reordered list*.
+
+The **first** node is considered **odd**, and the **second** node is **even**, and so on.
+
+Note that the relative order inside both the even and odd groups should remain as it was in the input.
+
+You must solve the problem in `O(1)` extra space complexity and `O(n)` time complexity.
+
+**Example 1:**
+Input: head = [1,2,3,4,5]
+Output: [1,3,5,2,4]
+
+**Example 2:**
+Input: head = [2,1,3,5,6,4,7]
+Output: [2,3,6,7,1,5,4]
+
+## **Solution:**
+
+```cpp
+class Solution {
+public:
+		ListNode* oddEvenList(ListNode* head) {
+				if(head == NULL || head->next == NULL){
+						return head;
+				}
+				ListNode* odd = head;
+				ListNode* even = head->next;
+				ListNode* evenHead = even;
+				while(even && even->next){
+						odd->next = even->next;
+						odd = odd->next;
+						even->next = odd->next;
+						even = even->next;
+				}
+				odd->next = evenHead;
+				return head;
+		}
+};
+```
+
+### 💡 **Question 6**
+
+Given a singly linked list of size **N**. The task is to **left-shift** the linked list by **k** nodes, where **k** is a given positive integer smaller than or equal to length of the linked list.
+
+**Example 1:**
+Input:
+N = 5
+value[] = {2, 4, 7, 8, 9}
+k = 3
+Output:8 9 2 4 7
+Explanation:Rotate 1:4 -> 7 -> 8 -> 9 -> 2
+Rotate 2: 7 -> 8 -> 9 -> 2 -> 4
+Rotate 3: 8 -> 9 -> 2 -> 4 -> 7
+
+**Example 2:**
+Input:
+N = 8
+value[] = {1, 2, 3, 4, 5, 6, 7, 8}
+k = 4
+Output:5 6 7 8 1 2 3 4
+
+## **Solution:**
+
+```cpp
+class Solution {
+public:
+		Node* rotate(Node* head, int k) {
+				// Your code here
+				Node* curr = head;
+				while(curr->next){
+						curr = curr->next;
+				}
+				curr->next = head;
+				curr = head;
+				while(k--){
+						curr = curr->next;
+				}
+				head = curr->next;
+				curr->next = NULL;
+				return head;
+		}
+};
+```
+
+### 💡 **Question 7**
+
+You are given the `head` of a linked list with `n` nodes.
+
+For each node in the list, find the value of the **next greater node**. That is, for each node, find the value of the first node that is next to it and has a **strictly larger** value than it.
+
+Return an integer array `answer` where `answer[i]` is the value of the next greater node of the `ith` node (**1-indexed**). If the `ith` node does not have a next greater node, set `answer[i] = 0`.
+
+**Example 1:**
+Input: head = [2,1,5]
+Output: [5,5,0]
+
+**Example 2:**
+Input: head = [2,7,4,3,5]
+Output: [7,0,5,5,0]
+
+## **Solution:**
+
+```cpp
+class Solution {
+public:
+		vector<int> nextLargerNodes(ListNode* head) {
+				vector<int> ans;
+				stack<int> s;
+				for(ListNode* curr = head; curr != NULL; curr = curr->next){
+						while(!s.empty() && ans[s.top()] < curr->val){
+								ans[s.top()] = curr->val;
+								s.pop();
+						}
+						s.push(ans.size());
+						ans.push_back(curr->val);
+				}
+				while(!s.empty()){
+						ans[s.top()] = 0;
+						s.pop();
+				}
+				return ans;
+		}
+};
+```
+
+### 💡 **Question 8**
+
+Given the `head` of a linked list, we repeatedly delete consecutive sequences of nodes that sum to `0` until there are no such sequences.
+
+After doing so, return the head of the final linked list.  You may return any such answer.
+
+(Note that in the examples below, all sequences are serializations of `ListNode` objects.)
+
+**Example 1:**
+Input: head = [1,2,-3,3,1]
+Output: [3,1]
+Note: The answer [1,2,1] would also be accepted.
+
+**Example 2:**
+Input: head = [1,2,3,-3,4]
+Output: [1,2,4]
+
+**Example 3:**
+Input: head = [1,2,3,-3,-2]
+Output: [1]
+
+## **Solution:**
+
+```cpp
+class Solution {
+public:
+		ListNode* removeZeroSumSublists(ListNode* head) {
+				ListNode* dummy = new ListNode(0);
+				dummy->next = head;
+				unordered_map<int, ListNode*> m;
+				int prefix = 0;
+				for(ListNode* i = dummy; i != NULL; i = i->next){
+						prefix += i->val;
+						m[prefix] = i;
+				}
+				prefix = 0;
+				for(ListNode* i = dummy; i != NULL; i = i->next){
+						prefix += i->val;
+						i->next = m[prefix]->next;
+				}
+				return dummy->next;
+		}
+};
+```
