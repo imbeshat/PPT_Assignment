@@ -48,10 +48,7 @@ the answer will be 1.
 
 ```javascript
 class Solution {
-	//Function to remove a loop in the linked list.
 	removeLoop(head) {
-		// code here
-		// remove the loop without losing any nodes
 		let slow = head;
 		let fast = head;
 		let loop = false;
@@ -100,7 +97,6 @@ Output:124
 ```javascript
 class Solution {
 	addOne(head) {
-		//code here
 		let curr = head;
 		let prev = null;
 		let next = null;
@@ -250,7 +246,6 @@ above example, the output will be 1.
 ```javascript
 class Solution {
 	copyList(head) {
-		//code here
 		let curr = head;
 		let next = null;
 		while (curr) {
@@ -349,7 +344,6 @@ Output:5 6 7 8 1 2 3 4
 class Solution {
 public:
 	Node* rotate(Node* head, int k) {
-		// Your code here
 		Node* curr = head;
 		while(curr->next){
 				curr = curr->next;
