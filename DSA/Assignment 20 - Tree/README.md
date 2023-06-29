@@ -8,15 +8,15 @@ Examples:
 
 Input1 :
 
-       1
+        1
 
-     /   \
+      /   \
 
-2      3
+     2      3
 
-/ \    / \
+    /  \    / \
 
-4   5  6   7
+    4   5  6   7
 
 Output1 : 28
 
@@ -24,15 +24,15 @@ As all the tree elements are positive, the largest subtree sum is equal to sum o
 
 Input2 :
 
-1
+        1
 
-     /    \
+      /    \
 
--2      3
+    -2      3
 
-/ \    /  \
+    / \    /  \
 
-4   5  -6   2
+    4  5  -6  2
 
 Output2 : 7
 
@@ -78,19 +78,19 @@ Input: arr[] = {7, 4, 12, 3, 6, 8, 1, 5, 10}
 
 Output: BST:
 
-            7
+                7
 
-         /    \
+            /    \
 
-       4     12
+          4     12
 
-     /  \     /
+        /  \     /
 
-    3   6  8
+        3   6  8
 
-/   /   \
+      /       /   \
 
-1  5   10
+    1       5     10
 
 ## **Solution**
 
@@ -133,19 +133,19 @@ Output1 : Yes
 
 For the given arr[], the Binary Search Tree is:
 
-            7
+                7
 
-         /    \
+            /    \
 
-       4     12
+          4     12
 
-     /  \     /
+        /  \     /
 
-    3   6  8
+        3   6  8
 
-/   /   \
+      /   /   \
 
-1  5   10
+      1  5   10
 
 Input2 : arr[] = {11, 6, 13, 5, 12, 10}
 
