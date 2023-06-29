@@ -6,27 +6,27 @@ You are given a binary tree. The binary tree is represented using the TreeNode c
 
 Input:
 
-        10
+          10
 
-       /   \
+        /   \
 
-     2      7
-
-/ \
-
-8 4
-
-Output:
-
-        8
+      2      7
 
       /   \
 
-    4     10
+      8    4
 
-/ \
+Output:
 
-2 7
+          8
+
+        /   \
+
+      4     10
+
+    / \
+
+    2 7
 
 ## **Solution**
 
