@@ -21,7 +21,7 @@ Input: n = -1
 Output: false
 Explanation: There is no x where 3x = (-1).
 
-## Solution
+## **Solution**
 
 ```javascript
 var isPowerOfThree = function (n) {
@@ -54,7 +54,7 @@ arr = [6]
 Input: n = 1
 Output: 1
 
-## Solution
+## **Solution**
 
 ```cpp
 class Solution {
@@ -82,7 +82,7 @@ Input : set = “abcd”
 
 Output : { “”, “a” ,”ab” ,”abc” ,”abcd”, “abd” ,”ac” ,”acd”, “ad” ,”b”, “bc” ,”bcd” ,”bd” ,”c” ,”cd” ,”d” }
 
-## Solution
+## **Solution**
 
 ```javascript
 function printSubsets(str, curr = "", index = 0) {
@@ -106,7 +106,7 @@ Output :4
 Input : str = "GEEKSFORGEEKS"
 Output :13
 
-## Solution
+## **Solution**
 
 ```javascript
 function length(str) {
@@ -133,7 +133,7 @@ Input : S = "aba"
 Output : 4
 The substrings are a, b, a and aba
 
-## Solution
+## **Solution**
 
 ```javascript
 function countSubstrings(str) {
@@ -174,7 +174,7 @@ Explanation:For N=3 , steps will be
 as follows in the example and total
 7 steps will be taken.
 
-## Solution
+## **Solution**
 
 ```javascript
 function towerOfHanoi(n, from, to, aux) {
@@ -200,7 +200,7 @@ Input: str = “cd”
 **Input:** str = “abb”
 **Output:** abb abb bab bba bab bba
 
-## Solution
+## **Solution**
 
 ```javascript
 function swap(str, i, j) {
@@ -232,3 +232,23 @@ There are three consonants b, c and d.
 
 Input : geeksforgeeks portal
 Output : 12
+
+## **Solution**
+
+```cpp
+int countConsonants(string str)
+{
+	int count = 0;
+	for (int i = 0; i < str.length(); i++)
+	{
+		if (str[i] != 'a' && str[i] != 'e' && str[i] != 'i'
+			&& str[i] != 'o' && str[i] != 'u' && str[i] != ' '
+			&& str[i] != 'A' && str[i] != 'E' && str[i] != 'I'
+			&& str[i] != 'O' && str[i] != 'U')
+		{
+			count++;
+		}
+	}
+	return count;
+}
+```
